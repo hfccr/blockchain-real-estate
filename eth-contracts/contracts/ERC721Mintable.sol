@@ -47,23 +47,30 @@ contract Ownable {
 //  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
 //  5) create a Paused & Unpaused event that emits the address that triggered the event
 contract Pausable is Ownable {
+
     bool private _paused;
+
     constructor() internal {
         _paused = false;
     }
+
     modifier whenPaused() {
         require(_paused, "Pausable: not paused");
         _;
     }
+
     modifier whenNotPaused() {
         require(!_paused, "Pausable: paused");
         _;
     }
+
     event Paused(address triggeredBy);
     event Unpaused(address triggeredBy);
+
     function paused() public view returns (bool) {
         return _paused;
     }
+
     function pause() public onlyOwner whenNotPaused {
         _paused = true;
         emit Paused(msg.sender);
@@ -118,7 +125,7 @@ contract ERC721 is Pausable, ERC165 {
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-    
+
     using SafeMath for uint256;
     using Address for address;
     using Counters for Counters.Counter;
