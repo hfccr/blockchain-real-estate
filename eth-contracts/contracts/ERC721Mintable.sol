@@ -547,11 +547,12 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 //      -calls the superclass mint and setTokenURI functions
 
 contract HFCCR is ERC721Metadata("hfccr", "HFC", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
+    string[] tokenURIs;
 
-    function mint(address to, uint256 tokenId) public onlyOwner returns(bool) {
-        // , string memory tokenURI
+    function mint(address to, uint256 tokenId, string memory tokenURI) public onlyOwner returns(bool) {
         _mint(to, tokenId);
         _setTokenURI(tokenId);
+        tokenURIs.push(tokenURI);
         return true;
     }
 }
