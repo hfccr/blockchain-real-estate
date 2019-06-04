@@ -1,0 +1,4 @@
+{
+  "mnemonic": "<your-bip39-wallet-mnemonic>",
+  "infuraProjectId": "<your-infura-project-id>"
+}

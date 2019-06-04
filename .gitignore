@@ -60,3 +60,5 @@ typings/
 .env
 
 ~$*.pptx
+
+eth-contracts/keys.json
